@@ -51,7 +51,9 @@ public class SerialHashDB implements Serializable {
     // this returns null if the key was previously mapped to a null value, or if the
     // key was not mapped.
     public Object update(Object key, Object update) {
-        return db.replace(key, update);
+        Object ret = db.replace(key, update);
+        saveDB();
+        return ret;
     }
 
     private void saveDB() {
